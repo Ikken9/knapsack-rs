@@ -25,15 +25,19 @@ pub fn knapsack(
                 dp[(i, w)] = dp[(i - 1, w)];
             }
 
-            if let Some(_) = print_subproblems {
-                println!(
-                    "Subproblem: First {} items, Capacity {} - Optimal value: {}",
-                    i, w, dp[(i, w)]
-                );
+            if let Some(p) = print_subproblems {
+                if p {
+                    println!(
+                        "Subproblem: First {} items, Capacity {} - Optimal value: {}",
+                        i, w, dp[(i, w)]
+                    );
+                }
             }
 
-            if let Some(_) = print_table {
-                print!("{}", dp);
+            if let Some(p) = print_table {
+                if p {
+                    print!("{}", dp);
+                }
             }
         }
     }
@@ -70,7 +74,7 @@ pub struct KnapsackSolution {
 impl Display for KnapsackSolution {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f,
-               "Optimal profit: {}\nTotal weight: {}\nItems: {:?}",
+               "Optimal profit: {}\nTotal weight: {}\nItems indexes: {:?}",
                self.optimal_profit,
                self.total_weight,
                self.item_indices)
